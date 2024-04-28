@@ -1,14 +1,55 @@
-export abstract class Unity extends Phaser.GameObjects.Shape {
+import { Location } from "../types/Location";
 
-    constructor(scene: Phaser.Scene) {
-        super(scene);
-        const gof = new Phaser.GameObjects.GameObjectFactory(scene);
-        gof.arc(0,0,32,0,360,false,0xff0000);
+export abstract class Unity extends Phaser.GameObjects.Sprite {
+
+    abstract sprite: string;
+    abstract speed: number;
+
+    constructor(scene: Phaser.Scene, x: number, y: number, sprite: string) {
+        super(scene, x, y, sprite);
     }
 
-    private desiredLocation?: {x: number, y: number};
+    /**
+     * Location where the unity aims to move
+     */
+    private _desiredLocation?: Location;
 
-    public setDesiredLocation(x: number, y: number): void {
-        this.desiredLocation = {x, y};
+    getLocation(): Location {
+        return {
+            x: this.x,
+            y: this.y
+        }
+    }
+
+    getSpeed(): number {
+        return this.speed;
+    }
+
+    setSpeed(speed: number) {
+        this.speed = speed;
+    }
+
+    setDesiredLocation(location: Location | undefined = undefined) {
+        this._desiredLocation = location;
+    }
+
+    public getDesiredLocation()
+    {
+        return this._desiredLocation;
+    }
+
+    moveToDesiredLocation() {
+        const desiredLocation = this.getDesiredLocation();
+        if (desiredLocation) {
+            const unityLocation = this.getLocation();
+            const newLocation: Location = {
+                x: (desiredLocation.x - unityLocation.x) / this.speed,
+                y: (desiredLocation.y - unityLocation.y) / this.speed
+            }
+            this.setPosition(newLocation.x, newLocation.y);
+            if (unityLocation.x === desiredLocation.x && unityLocation.y === desiredLocation.y) {
+                this.setDesiredLocation();
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
+import '../objects/Villager';
+import Villager from '../objects/Villager';
 import { Scene } from 'phaser';
-import { Unity } from '../objects/Unity';
-import { Villager } from '../objects/Villager';
 
 export class Game extends Scene
 {
@@ -17,8 +17,7 @@ export class Game extends Scene
         1: 0xa08662
     };
     cellSize = 64;
-    //player : Villager;
-    player : Phaser.GameObjects.Arc;
+    villager : Villager;
     
 
     constructor ()
@@ -35,31 +34,22 @@ export class Game extends Scene
                     this.add.rectangle((x*this.cellSize),(y*this.cellSize),this.cellSize,this.cellSize,this.textureMap[column]).setOrigin(0);
             })
         })
-        this.player = this.add.circle(0,0,this.cellSize/2,0xff0000,).setOrigin(0);
-        this.player.setData('speed', 10);
+        this.villager = this.add.villager(0,0);
+        this.villager.setData('speed', 10);
         
-        this.input.on('pointerdown',(e: any)=>{
-            if(e.leftButtonDown()){
-                this.player.setData('desiredLocation', {x: e.x-this.cellSize/2,y: e.y-this.cellSize/2}); 
+        this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer) => {
+            if (pointerEvent.leftButtonDown()) {
+                console.log(pointerEvent.worldX, pointerEvent.worldY)
+                this.villager.setDesiredLocation({
+                    x: pointerEvent.x - (this.cellSize/2),
+                    y: pointerEvent.y - (this.cellSize/2) 
+                })
+                console.log(this.villager.getDesiredLocation())
             }
-           
-        })
+        });
     }
 
     update(): void {
-        const desiredLocation = this.player.getData('desiredLocation');
-        if (desiredLocation) {
-            console.log({x: this.player.x, y: this.player.y})
-            console.log(desiredLocation)
-            const moveX = Math.round((desiredLocation.x - this.player.x) / this.player.getData('speed'));
-            const moveY = Math.round((desiredLocation.y - this.player.y) / this.player.getData('speed'));
-            console.log(moveX, moveY)
-            this.player.setPosition(this.player.x + moveX, this.player.y + moveY);
-            if (this.player.x === desiredLocation.x && this.player.y === desiredLocation.y) {
-                this.player.setData('desiredPosition', null);
-            }
-        }
-
-        
+        this.villager.moveToDesiredLocation()     
     }
 }
