@@ -9,11 +9,12 @@ export class Boot extends Scene
 
     preload ()
     {
-        this.load.atlas('villager', 'assets/villager.png', 'assets/villager.json');
+        this.load.atlas('villager', 'assets/villager2.png', 'assets/villager2.json');
     }
 
     create ()
     {
+        this.input.mouse?.disableContextMenu()
         this.scene.start('Preloader');
     }
 }

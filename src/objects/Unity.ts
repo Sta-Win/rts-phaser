@@ -38,14 +38,16 @@ export abstract class Unity extends Phaser.Physics.Arcade.Sprite {
         return this._desiredLocation;
     }
 
-    moveToDesiredLocation() {
+    moveToDesiredLocation(delta: number) {
         const desiredLocation = this.getDesiredLocation();
         if (desiredLocation) {
             const unityLocation = this.getLocation();
+            console.log(desiredLocation, unityLocation)
             const newLocation: Location = {
-                x: (desiredLocation.x - unityLocation.x) / this.speed,
-                y: (desiredLocation.y - unityLocation.y) / this.speed
+                x: (desiredLocation.x - unityLocation.x),
+                y: (desiredLocation.y - unityLocation.y)
             }
+            console.log('=>', newLocation)
             this.setPosition(newLocation.x, newLocation.y);
             if (unityLocation.x === desiredLocation.x && unityLocation.y === desiredLocation.y) {
                 this.setDesiredLocation();

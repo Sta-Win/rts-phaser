@@ -1,3 +1,6 @@
+import { Vector } from 'matter';
+import { createVillagerAnims } from '../anims/VillagerAnims';
+import { Unity } from '../objects/Unity';
 import '../objects/Villager';
 import Villager from '../objects/Villager';
 import { Scene } from 'phaser';
@@ -5,19 +8,14 @@ import { Scene } from 'phaser';
 export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
-    map = [
-        [0,0,0,0,0,0,0,0,1,1],
-        [0,0,0,0,0,0,0,1,1,0],
-        [1,1,1,1,1,1,1,1,0,0],
-        [0,1,1,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0]
-    ];
+    map: number[][] = [];
     textureMap : {[texture: number] : number} = {
         0: 0x9cdb43,
         1: 0xa08662
     };
-    cellSize = 64;
-    villager : Villager;
+    cellSize = 32;
+
+    unities: Unity[] = []
     
 
     constructor ()
@@ -27,28 +25,56 @@ export class Game extends Scene
 
     create ()
     {
+        const nbOfCellPerLine = parseInt(this.game.config.width+'') / this.cellSize;
+        const nbOfCellPerColumn = parseInt(this.game.config.height+'') / this.cellSize;
+        for (let row = 0; row < nbOfCellPerColumn; row++) {
+            this.map.push(new Array(nbOfCellPerLine).fill(0))
+        }
+        this.map[0][1] = 1;
+        console.log(nbOfCellPerLine, nbOfCellPerColumn)
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x000);
+        createVillagerAnims(this.anims);
         this.map.forEach((line,y)=>{
             line.forEach((column,x)=>{
                     this.add.rectangle((x*this.cellSize),(y*this.cellSize),this.cellSize,this.cellSize,this.textureMap[column]).setOrigin(0);
             })
         })
-        this.villager = this.add.villager(0,0);
-        this.villager.setData('speed', 10);
+        
+        this.unities.push(
+            this.add.villager(0,0)
+        )
         
         this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer) => {
-            if (pointerEvent.leftButtonDown()) {
-                this.villager.setDesiredLocation({
-                    x: pointerEvent.x - (this.cellSize/2),
-                    y: pointerEvent.y - (this.cellSize/2) 
+            if (pointerEvent.rightButtonDown()) {
+                this.unities[0].setDesiredLocation({
+                    x: pointerEvent.x,
+                    y: pointerEvent.y
                 })
-                console.log(this.villager.getDesiredLocation())
             }
         });
+
+        this.input.on('wheeldown', () => {
+            this.camera.setZoom(this.camera.zoom+1)
+        })
+
+        this.input.on('wheelup', () => {
+            this.camera.setZoom(this.camera.zoom-1)
+        })
+
+        
     }
 
-    update(): void {
-        this.villager.moveToDesiredLocation()     
+    update(_time: any, delta: number): void {
+        this.unities.forEach(unity => {
+            unity.moveToDesiredLocation(delta);
+            const desiredLocation = unity.getDesiredLocation();
+            if (desiredLocation) {
+                //this.add.line(0,0,0,0,100,100, 0x000)
+                this.add.line(unity.x, unity.y, unity.x, unity.y, desiredLocation?.x, desiredLocation?.y, 0x000)
+            }
+            
+        })
+        //this.villager.moveToDesiredLocation(delta);
     }
 }

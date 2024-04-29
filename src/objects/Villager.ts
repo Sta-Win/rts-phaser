@@ -18,9 +18,8 @@ export default class Villager extends Unity {
     speed: number = 10;
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
-        const sprite: string = 'villager.png';
-        super(scene, x, y, sprite);
-        this.anims.play('')
+        super(scene, x, y, 'villager');
+        this.anims.play('villager-idle-bottom')
     }
 
     buildBatiment() {
@@ -31,7 +30,8 @@ export default class Villager extends Unity {
 
 Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser.GameObjects.GameObjectFactory, x: number, y: number) {
     const villager = new Villager(this.scene, x, y);
-    villager.setOrigin(0)
+
+    villager.setPosition(500,500)
 
     this.displayList.add(villager);
     this.updateList.add(villager);

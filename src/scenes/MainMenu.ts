@@ -21,7 +21,7 @@ export class MainMenu extends Scene
                 align: 'center'
             }
         ).setOrigin()
-
+        this.scene.start('Game');
 
         this.input.once('pointerdown', () => {
 
