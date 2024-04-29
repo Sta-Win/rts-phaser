@@ -39,7 +39,6 @@ export class Game extends Scene
         
         this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer) => {
             if (pointerEvent.leftButtonDown()) {
-                console.log(pointerEvent.worldX, pointerEvent.worldY)
                 this.villager.setDesiredLocation({
                     x: pointerEvent.x - (this.cellSize/2),
                     y: pointerEvent.y - (this.cellSize/2) 

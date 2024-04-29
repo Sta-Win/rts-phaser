@@ -1,6 +1,6 @@
 import { Location } from "../types/Location";
 
-export abstract class Unity extends Phaser.GameObjects.Sprite {
+export abstract class Unity extends Phaser.Physics.Arcade.Sprite {
 
     abstract sprite: string;
     abstract speed: number;

@@ -9,7 +9,7 @@ export class Boot extends Scene
 
     preload ()
     {
-        
+        this.load.atlas('villager', 'assets/villager.png', 'assets/villager.json');
     }
 
     create ()

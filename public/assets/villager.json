@@ -1,0 +1,59 @@
+{
+  "textures": [
+    {
+      "image": "villager.png",
+      "format": "RGBA8888",
+      "size": {
+        "w": 128,
+        "h": 128
+      },
+      "scale": 1,
+      "frames": [
+        {
+          "filename": "idle-right.png",
+          "rotated": false,
+          "trimmed": true,
+          "sourceSize": {
+            "w": 32,
+            "h": 32
+          },
+          "spriteSourceSize": {
+            "x": 10,
+            "y": 9,
+            "w": 11,
+            "h": 23
+          },
+          "frame": {
+            "x": 10,
+            "y": 9,
+            "w": 11,
+            "h": 23
+          }
+        },
+        {
+          "filename": "move-right-1.png",
+          "rotated": false,
+          "trimmed": true,
+          "sourceSize": {
+            "w": 32,
+            "h": 32
+          },
+          "spriteSourceSize": {
+            "x": 42,
+            "y": 10,
+            "w": 11,
+            "h": 22
+          },
+          "frame": {
+            "x": 10,
+            "y": 9,
+            "w": 20,
+            "h": 31
+          }
+        }
+        
+      ]
+    }
+
+  ]
+}
