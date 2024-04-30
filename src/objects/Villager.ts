@@ -1,4 +1,4 @@
-import { Unity } from "./Unity";
+import { Unit } from "./Unit";
 
 
 declare global
@@ -12,7 +12,7 @@ declare global
     }
 }
 
-export default class Villager extends Unity {
+export default class Villager extends Unit {
 
     sprite: string = 'villager';
     speed: number = 100;
@@ -31,7 +31,6 @@ export default class Villager extends Unity {
 Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser.GameObjects.GameObjectFactory, x: number, y: number) {
     const villager = new Villager(this.scene, x, y);
 
-    villager.setPosition(500,500);
     villager.setInteractive();
 
     this.displayList.add(villager);

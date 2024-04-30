@@ -1,7 +1,7 @@
 import { Location } from "../types/Location";
 import { MathUtils } from "../utils/math";
 
-export abstract class Unity extends Phaser.Physics.Arcade.Sprite {
+export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
 
     abstract sprite: string;
     abstract speed: number;
@@ -75,4 +75,8 @@ export abstract class Unity extends Phaser.Physics.Arcade.Sprite {
         }
         this.anims.play(`${this.sprite}-run-${direction}`);
     }
+}
+
+export function isUnity(gameObject: Phaser.GameObjects.GameObject): gameObject is Unit {
+    return 'sprite' in gameObject;
 }
