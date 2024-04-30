@@ -47,14 +47,18 @@ export class Game extends Scene
         this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer) => {
             if (pointerEvent.rightButtonDown()) {
                 this.unities[0].setDestination({
-                    x: pointerEvent.x,
-                    y: pointerEvent.y
+                    x: pointerEvent.worldX,
+                    y: pointerEvent.worldY
                 })
             }
         });
 
-        this.input.on('wheeldown', () => {
-            this.camera.setZoom(this.camera.zoom+1)
+        this.input.on('wheel', (pointerEvent: Phaser.Input.Pointer) => {
+            const zoomLevel = pointerEvent.deltaY / 500;
+            const nextZoomLevel = this.camera.zoom + zoomLevel;
+            if (nextZoomLevel > 0.5 && nextZoomLevel < 2.5) {
+                this.camera.setZoom(this.camera.zoom+zoomLevel)
+            }
         })
 
         this.input.on('wheelup', () => {
