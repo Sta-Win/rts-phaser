@@ -31,7 +31,6 @@ export class Game extends Scene
             this.map.push(new Array(nbOfCellPerLine).fill(0))
         }
         this.map[0][1] = 1;
-        console.log(nbOfCellPerLine, nbOfCellPerColumn)
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x000);
         createVillagerAnims(this.anims);
@@ -47,7 +46,7 @@ export class Game extends Scene
         
         this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer) => {
             if (pointerEvent.rightButtonDown()) {
-                this.unities[0].setDesiredLocation({
+                this.unities[0].setDestination({
                     x: pointerEvent.x,
                     y: pointerEvent.y
                 })
@@ -67,14 +66,7 @@ export class Game extends Scene
 
     update(_time: any, delta: number): void {
         this.unities.forEach(unity => {
-            unity.moveToDesiredLocation(delta);
-            const desiredLocation = unity.getDesiredLocation();
-            if (desiredLocation) {
-                //this.add.line(0,0,0,0,100,100, 0x000)
-                this.add.line(unity.x, unity.y, unity.x, unity.y, desiredLocation?.x, desiredLocation?.y, 0x000)
-            }
-            
+            unity.moveToDestination(delta);            
         })
-        //this.villager.moveToDesiredLocation(delta);
     }
 }

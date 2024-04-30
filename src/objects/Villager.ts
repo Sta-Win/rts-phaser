@@ -14,8 +14,8 @@ declare global
 
 export default class Villager extends Unity {
 
-    sprite: string;
-    speed: number = 10;
+    sprite: string = 'villager';
+    speed: number = 100;
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'villager');

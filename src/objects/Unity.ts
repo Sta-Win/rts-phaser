@@ -1,4 +1,5 @@
 import { Location } from "../types/Location";
+import { MathUtils } from "../utils/math";
 
 export abstract class Unity extends Phaser.Physics.Arcade.Sprite {
 
@@ -12,7 +13,7 @@ export abstract class Unity extends Phaser.Physics.Arcade.Sprite {
     /**
      * Location where the unity aims to move
      */
-    private _desiredLocation?: Location;
+    private _destination?: Location;
 
     getLocation(): Location {
         return {
@@ -29,29 +30,49 @@ export abstract class Unity extends Phaser.Physics.Arcade.Sprite {
         this.speed = speed;
     }
 
-    setDesiredLocation(location: Location | undefined = undefined) {
-        this._desiredLocation = location;
+    setDestination(location: Location | undefined = undefined) {
+        this._destination = location;
     }
 
-    public getDesiredLocation()
+    public getDestination()
     {
-        return this._desiredLocation;
+        return this._destination;
     }
 
-    moveToDesiredLocation(delta: number) {
-        const desiredLocation = this.getDesiredLocation();
-        if (desiredLocation) {
-            const unityLocation = this.getLocation();
-            console.log(desiredLocation, unityLocation)
-            const newLocation: Location = {
-                x: (desiredLocation.x - unityLocation.x),
-                y: (desiredLocation.y - unityLocation.y)
-            }
-            console.log('=>', newLocation)
-            this.setPosition(newLocation.x, newLocation.y);
-            if (unityLocation.x === desiredLocation.x && unityLocation.y === desiredLocation.y) {
-                this.setDesiredLocation();
+    moveToDestination(delta: number) {
+        const destination = this.getDestination();
+        if (destination) {
+            if (this.x !== destination.x || this.y !== destination.y) {
+                const unityLocation = this.getLocation();
+                const distance = MathUtils.pythagore(destination.x, destination.y, unityLocation.x, unityLocation.y);
+                const moveFactor = Math.min((this.speed * (delta/1000)), distance) / distance;
+                const moveX = this.x + (destination.x - this.x) * moveFactor;
+                const moveY = this.y + (destination.y - this.y) * moveFactor;
+                this.playAnimation(destination, unityLocation);
+                this.setPosition(moveX, moveY);
+            } else {
+                this.anims.play(`${this.sprite}-idle-bottom`);
             }
         }
+    }
+
+    private playAnimation(destination: Location, unityLocation: Location) {
+        const lateralMovement = destination.x - unityLocation.x;
+        const verticalMovement = destination.y - unityLocation.y;
+        let direction = '';
+        if (Math.abs(lateralMovement) > Math.abs(verticalMovement)) {
+            if (lateralMovement > 0) {
+                direction = 'right';
+            } else {
+                direction = 'left';
+            }
+        } else {
+            if (verticalMovement > 0) {
+                direction = 'bottom';
+            } else {
+                direction = 'top';
+            }
+        }
+        this.anims.play(`${this.sprite}-run-${direction}`);
     }
 }
