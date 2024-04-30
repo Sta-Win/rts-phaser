@@ -3,7 +3,8 @@ import { createVillagerAnims } from '../anims/VillagerAnims';
 import { Unity } from '../objects/Unity';
 import '../objects/Villager';
 import Villager from '../objects/Villager';
-import { Scene } from 'phaser';
+import { GameObjects, Scene } from 'phaser';
+import { Location } from '../types/Location';
 
 export class Game extends Scene
 {
@@ -15,8 +16,13 @@ export class Game extends Scene
     };
     cellSize = 32;
 
-    unities: Unity[] = []
-    
+    private readonly unities: Unity[] = []
+
+    private _selectedUnities: Unity[] = [];
+
+    setSelectedUnities(selectedUnities: Unity[]): void {
+        this._selectedUnities = selectedUnities;
+    }
 
     constructor ()
     {
@@ -44,12 +50,20 @@ export class Game extends Scene
             this.add.villager(0,0)
         )
         
-        this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer) => {
+        this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer, objects: Phaser.GameObjects.GameObject[]) => {
             if (pointerEvent.rightButtonDown()) {
-                this.unities[0].setDestination({
-                    x: pointerEvent.worldX,
-                    y: pointerEvent.worldY
-                })
+                if (this._selectedUnities.length > 0) {
+                    const destination = {x: pointerEvent.worldX, y: pointerEvent.worldY};
+                    this.moveUnities(destination);
+                }                
+            }
+            if (pointerEvent.leftButtonDown()) {
+                if (objects.length < 0) {
+                    this.setSelectedUnities([]);
+                } else {
+                    this.setSelectedUnities([objects[0] as Unity]);
+                }
+                
             }
         });
 
@@ -64,8 +78,13 @@ export class Game extends Scene
         this.input.on('wheelup', () => {
             this.camera.setZoom(this.camera.zoom-1)
         })
-
         
+    }
+
+    private moveUnities(destination: Location) {
+        this.selectedUnities.forEach(selectedUnity => {
+            selectedUnity.setDestination(destination);
+        });
     }
 
     update(_time: any, delta: number): void {

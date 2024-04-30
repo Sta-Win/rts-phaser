@@ -31,7 +31,8 @@ export default class Villager extends Unity {
 Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser.GameObjects.GameObjectFactory, x: number, y: number) {
     const villager = new Villager(this.scene, x, y);
 
-    villager.setPosition(500,500)
+    villager.setPosition(500,500);
+    villager.setInteractive();
 
     this.displayList.add(villager);
     this.updateList.add(villager);
