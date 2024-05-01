@@ -10,6 +10,8 @@ export class Boot extends Scene
     preload ()
     {
         this.load.atlas('villager', 'assets/villager2.png', 'assets/villager2.json');
+        this.load.image('tilesGrass', 'assets/TX Tileset Grass.png');
+        this.load.image('tilesProps', 'assets/TX Props.png');
     }
 
     create ()

@@ -32,6 +32,12 @@ Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser
     const villager = new Villager(this.scene, x, y);
 
     villager.setInteractive();
+    this.scene.physics.add.existing(villager);
+    console.log(this.scene.physics.world)
+    villager.addCollidesWith(1)
+    this.scene.physics.collide(villager, undefined, (villager, collidedWith) => {
+        console.log(villager, 'collided with', collidedWith)
+    });
 
     this.displayList.add(villager);
     this.updateList.add(villager);

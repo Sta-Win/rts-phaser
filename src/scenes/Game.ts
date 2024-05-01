@@ -8,6 +8,8 @@ export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
     map: number[][] = [];
+    Map: Phaser.Tilemaps.Tilemap;
+    tileset: Phaser.Tilemaps.Tileset | null;
     textureMap : {[texture: number] : number} = {
         0: 0x9cdb43,
         1: 0xa08662
@@ -31,12 +33,12 @@ export class Game extends Scene
     {
         this.generateMap();
         this.setCamera();
-        createVillagerAnims(this.anims);        
+        createVillagerAnims(this.anims);
         
         this.units.push(
             this.add.villager(100,100),
             this.add.villager(200,200)
-        )
+        );
         
         this.handleEvents();
         
@@ -44,7 +46,6 @@ export class Game extends Scene
 
     private handleEvents() {
         this.onClick();
-        this.onDrag();
         this.onScroll();
     }
 
@@ -58,7 +59,7 @@ export class Game extends Scene
         });
     }
 
-    private onDrag() {
+    private onClick() {
         let selectionZone: Phaser.GameObjects.Rectangle;
         this.input.on('pointerdown', (pointer: Phaser.Input.Pointer, objects: Phaser.GameObjects.GameObject[]) => {
             if (pointer.rightButtonDown()) {
@@ -104,15 +105,9 @@ export class Game extends Scene
                 }
             }
         })
-        this.input.on('pointerupoutside', (pointer: Phaser.Input.Pointer) => {
+        this.input.on('pointerupoutside', () => {
             selectionZone.destroy()
         })
-    }
-
-    private onClick() {
-        this.input.on('pointerdown', (pointerEvent: Phaser.Input.Pointer, objects: Phaser.GameObjects.GameObject[]) => {
-            
-        });
     }
 
     private setCamera() {
@@ -124,14 +119,31 @@ export class Game extends Scene
         const nbOfCellPerLine = parseInt(this.game.config.width + '') / this.cellSize;
         const nbOfCellPerColumn = parseInt(this.game.config.height + '') / this.cellSize;
         for (let row = 0; row < nbOfCellPerColumn; row++) {
-            this.map.push(new Array(nbOfCellPerLine).fill(0));
+            const line = [];
+            for (let col = 0; col < nbOfCellPerLine; col++) {
+                let tile = Math.floor(Math.random() * (8 - 0)) + 0;
+                if (Math.random() < .1) {
+                    tile = 50
+                }
+                line.push(tile);
+            }
+            this.map.push(line);
         }
-        this.map[0][1] = 1;
-        this.map.forEach((line,y)=>{
-            line.forEach((column,x)=>{
-                    this.add.rectangle((x*this.cellSize),(y*this.cellSize),this.cellSize,this.cellSize,this.textureMap[column]).setOrigin(0);
-            })
-        })
+
+
+        this.Map = this.make.tilemap({
+            data: this.map,
+            tileWidth: 32,
+            tileHeight: 32,
+            width: parseInt(this.game.config.width+''),
+            height: parseInt(this.game.config.height+''),
+        });
+        this.tileset = this.Map.addTilesetImage('tilesGrass');
+        if (this.tileset ) {
+            this.Map.createLayer(0, this.tileset);
+        }
+        
+
     }
 
     private moveUnits(destination: Location) {
