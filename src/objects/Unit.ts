@@ -1,5 +1,5 @@
 import { Location } from "../types/Location";
-import { Order } from "../types/Order";
+import { Task } from "../types/Order";
 import { Queue } from "../types/Queue";
 import { MathUtils } from "../utils/math";
 
@@ -8,7 +8,7 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
     abstract sprite: string;
     abstract speed: number;
 
-    orderFunctionMap: {[fnName: string]: (params?: any) => any} = {
+    taskFunctionMap: {[fnName: string]: (...params: any) => any} = {
         'moveTo': this.moveToDestination
     }
 
@@ -21,7 +21,7 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
      */
     private _destination?: Location;
 
-    public readonly ordersQueue = new Queue<Order>();
+    public readonly taskQueue = new Queue<Task>();
 
     getLocation(): Location {
         return {
@@ -47,17 +47,18 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
         return this._destination;
     }
 
-    abstract work(order: Order): void;
+    abstract work(order: Task): void;
 
-    doThings(): void {
-        const currentOrder = this.ordersQueue.first();
+    doThings(delta: number): void {
+        const currentOrder = this.taskQueue.first();
         if (!currentOrder) {
             this.state = 'idle';
         } else {
+            currentOrder.args = {...currentOrder.args, delta};
             this.state = 'active';
             switch (currentOrder.status) {
                 case 'done': {
-                    const nextOrder = this.ordersQueue.next();
+                    const nextOrder = this.taskQueue.next();
                     if (nextOrder) {
                         this.state = 'in progress'
                     } else {
@@ -76,30 +77,41 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    moveToDestination(delta: number) {
-        const destination = this.getDestination();
+    moveToDestination(x: number, y: number, delta: number) {
+        const destination: Location = {x, y};
         if (destination) {
-            if (this.x !== destination.x || this.y !== destination.y) {
-                const unityLocation = this.getLocation();
-                const distance = MathUtils.pythagore(destination.x, destination.y, unityLocation.x, unityLocation.y);
-                const moveFactor = Math.min((this.speed * (delta/1000)), distance) / distance;
-                const moveX = this.x + (destination.x - this.x) * moveFactor;
-                const moveY = this.y + (destination.y - this.y) * moveFactor;
-                this.playAnimation(destination, unityLocation);
-                this.scene.physics.moveTo(this, destination.x, destination.y)
-                if (moveFactor > distance) {
-                    this.setVelocity(0)
+            const isNotArrived = this.x !== destination.x || this.y !== destination.y;
+            if (isNotArrived) {
+                const unitLocation = this.getLocation();
+                const distance = MathUtils.pythagore(destination.x, destination.y, unitLocation.x, unitLocation.y);
+                const direction = this.getDirection(
+                    destination.x - unitLocation.x,
+                    destination.y - unitLocation.y
+                );
+                const animationNotDone = !(this.anims.getProgress() < 1);
+                if (animationNotDone) {
+                    this.playAnimation(direction, 'run');
                 }
-            } else {
-                this.setVelocity(0)
-                this.anims.play(`${this.sprite}-idle-bottom`);                
+                if ((this.speed * (delta/1000)) > distance) {
+                    this.setVelocity(0)
+                    this.playAnimation(direction, 'idle')
+                    this.taskDone();
+                    return;
+                }
+                this.scene.physics.moveTo(this, destination.x, destination.y)
             }
         }
     }
 
-    private playAnimation(destination: Location, unityLocation: Location) {
-        const lateralMovement = destination.x - unityLocation.x;
-        const verticalMovement = destination.y - unityLocation.y;
+    taskDone() {
+        this.taskQueue.next();
+    }
+
+    private playAnimation(direction: string, state: string) {
+        this.anims.play(`${this.sprite}-${state}-${direction}`);
+    }
+
+    private getDirection(lateralMovement: number, verticalMovement: number): string {
         let direction = '';
         if (Math.abs(lateralMovement) > Math.abs(verticalMovement)) {
             if (lateralMovement > 0) {
@@ -114,7 +126,7 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
                 direction = 'top';
             }
         }
-        this.anims.play(`${this.sprite}-run-${direction}`);
+        return direction;
     }
 }
 

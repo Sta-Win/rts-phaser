@@ -33,8 +33,10 @@ export const createVillagerAnims = (anims: Phaser.Animations.AnimationManager) =
             start: 0,
             end: 3,
             prefix: 'r',
-            suffix: '.png'
-        })
+            suffix: '.png',
+        }),
+        repeat: -1,
+        duration: 500
     }),
     anims.create({
         key: 'villager-run-left',
@@ -43,7 +45,9 @@ export const createVillagerAnims = (anims: Phaser.Animations.AnimationManager) =
             end: 3,
             prefix: 'l',
             suffix: '.png'
-        })
+        }),
+        repeat: -1,
+        duration: 500
     }),
     anims.create({
         key: 'villager-run-top',
@@ -52,7 +56,9 @@ export const createVillagerAnims = (anims: Phaser.Animations.AnimationManager) =
             end: 3,
             prefix: 't',
             suffix: '.png'
-        })
+        }),
+        repeat: -1,
+        duration: 500
     }),
     anims.create({
         key: 'villager-run-bottom',
@@ -61,6 +67,8 @@ export const createVillagerAnims = (anims: Phaser.Animations.AnimationManager) =
             end: 3,
             prefix: 'b',
             suffix: '.png'
-        })
+        }),
+        repeat: -1,
+        duration: 500
     })
 }

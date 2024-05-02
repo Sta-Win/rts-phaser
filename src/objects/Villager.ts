@@ -1,4 +1,4 @@
-import { Order } from "../types/Order";
+import { Task } from "../types/Order";
 import { Unit } from "./Unit";
 
 
@@ -24,16 +24,17 @@ export default class Villager extends Unit {
 
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'villager');
-        this.orderFunctionMap = {
-            ...this.orderFunctionMap,
+        this.taskFunctionMap = {
+            ...this.taskFunctionMap,
             ...this.villagerOrderFunctionMap
         }
         this.anims.play('villager-idle-bottom')
     }
 
-    work(order: Order): void {
-        const fn = this.orderFunctionMap[order.type];
-        fn(order.args);
+    work(task: Task): void {
+        const fn: Function = this.taskFunctionMap[task.type];
+        const args = task.args ? Object.values(task.args) : [];
+        fn.bind(this, ...args)();        
     }
 
     build(what: string): void {

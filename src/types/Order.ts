@@ -1,7 +1,7 @@
-export type Order = {
+export type Task = {
     type: string
-    status: OrderStatus
-    args?: unknown
+    status: TaskStatus
+    args?: {[arg: string]: any}
 }
 
-export type OrderStatus = 'done' | 'in progress' | 'waiting'
+export type TaskStatus = 'done' | 'in progress' | 'waiting'

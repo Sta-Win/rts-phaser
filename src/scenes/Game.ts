@@ -3,7 +3,7 @@ import { isUnit, Unit } from '../objects/Unit';
 import '../objects/Villager';
 import { Scene } from 'phaser';
 import { Location } from '../types/Location';
-import { Order } from '../types/Order';
+import { Task as Task } from '../types/Order';
 
 export class Game extends Scene
 {
@@ -42,8 +42,8 @@ export class Game extends Scene
         );
 
         // Test de orderQueue
-        this.units[0].ordersQueue.add({type: 'build', status: 'waiting', 'args': 'une maison'})
-        this.units[0].doThings()
+        // this.units[0].taskQueue.add({type: 'build', status: 'waiting', 'args': 'une maison'})
+        // this.units[0].doThings()
         
         this.handleEvents();
         
@@ -67,16 +67,16 @@ export class Game extends Scene
     private onClick() {
         let selectionZone: Phaser.GameObjects.Rectangle;
         this.input.on('pointerdown', (pointer: Phaser.Input.Pointer, objects: Phaser.GameObjects.GameObject[]) => {
-            if (pointer.rightButtonDown()) {
+            if (pointer.rightButtonDown()) {                
                 if (this._selectedUnits.length > 0) {
                     const destination = { x: pointer.worldX, y: pointer.worldY };
-                    const order: Order = {type: 'moveTo', status: 'waiting', args: destination};
+                    const task: Task = {type: 'moveTo', status: 'waiting', args: destination};
                     this._selectedUnits.forEach(unit => {
                         if (false) { // MAJ+Click
-                            unit.ordersQueue.add(order);
+                            unit.taskQueue.add(task);
                         } else {
-                            unit.ordersQueue.empty();
-                            unit.ordersQueue.add(order);
+                            unit.taskQueue.empty();
+                            unit.taskQueue.add(task);
                         }
                     });
                     //this.moveUnits(destination);
@@ -174,8 +174,8 @@ export class Game extends Scene
 
     update(_time: any, delta: number): void {
         this.units.forEach(unit => {
-            unit.doThings();
-            unit.moveToDestination(delta);            
+            unit.doThings(delta);
+            //unit.moveToDestination(delta);            
         })
     }
 }
