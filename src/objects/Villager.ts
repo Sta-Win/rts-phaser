@@ -1,3 +1,4 @@
+import { Order } from "../types/Order";
 import { Unit } from "./Unit";
 
 
@@ -17,13 +18,26 @@ export default class Villager extends Unit {
     sprite: string = 'villager';
     speed: number = 100;
 
+    readonly villagerOrderFunctionMap = {
+        'build': this.build
+    }
+
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'villager');
+        this.orderFunctionMap = {
+            ...this.orderFunctionMap,
+            ...this.villagerOrderFunctionMap
+        }
         this.anims.play('villager-idle-bottom')
     }
 
-    buildBatiment() {
+    work(order: Order): void {
+        const fn = this.orderFunctionMap[order.type];
+        fn(order.args);
+    }
 
+    build(what: string): void {
+        //console.log('je construit', what)
     }
 
 }
@@ -33,7 +47,6 @@ Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser
 
     villager.setInteractive();
     this.scene.physics.add.existing(villager);
-    console.log(this.scene.physics.world)
     villager.addCollidesWith(1)
     this.scene.physics.collide(villager, undefined, (villager, collidedWith) => {
         console.log(villager, 'collided with', collidedWith)

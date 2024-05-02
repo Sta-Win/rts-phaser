@@ -1,8 +1,9 @@
 import { createVillagerAnims } from '../anims/VillagerAnims';
-import { isUnity, Unit } from '../objects/Unit';
+import { isUnit, Unit } from '../objects/Unit';
 import '../objects/Villager';
 import { Scene } from 'phaser';
 import { Location } from '../types/Location';
+import { Order } from '../types/Order';
 
 export class Game extends Scene
 {
@@ -39,6 +40,10 @@ export class Game extends Scene
             this.add.villager(100,100),
             this.add.villager(200,200)
         );
+
+        // Test de orderQueue
+        this.units[0].ordersQueue.add({type: 'build', status: 'waiting', 'args': 'une maison'})
+        this.units[0].doThings()
         
         this.handleEvents();
         
@@ -65,7 +70,16 @@ export class Game extends Scene
             if (pointer.rightButtonDown()) {
                 if (this._selectedUnits.length > 0) {
                     const destination = { x: pointer.worldX, y: pointer.worldY };
-                    this.moveUnits(destination);
+                    const order: Order = {type: 'moveTo', status: 'waiting', args: destination};
+                    this._selectedUnits.forEach(unit => {
+                        if (false) { // MAJ+Click
+                            unit.ordersQueue.add(order);
+                        } else {
+                            unit.ordersQueue.empty();
+                            unit.ordersQueue.add(order);
+                        }
+                    });
+                    //this.moveUnits(destination);
                 }
             }
             if (pointer.leftButtonDown()) {
@@ -92,7 +106,7 @@ export class Game extends Scene
             if (pointer.leftButtonReleased()) {
                 if (selectionZone) {
                     const selectedUnities = this.children.list.filter((child): child is Unit => {
-                        if (isUnity(child)) {
+                        if (isUnit(child)) {
                             const selectionZoneRect = new Phaser.Geom.Rectangle(
                                 Math.min(pointer.worldX, selectionZone.x),
                                 Math.min(pointer.worldY, selectionZone.y),
@@ -153,13 +167,15 @@ export class Game extends Scene
 
     private moveUnits(destination: Location) {
         this._selectedUnits.forEach(selectedUnit => {
+            //this.physics.moveTo(selectedUnit, destination.x, destination.y, selectedUnit.speed)
             selectedUnit.setDestination(destination);
         });
     }
 
     update(_time: any, delta: number): void {
-        this.units.forEach(unity => {
-            unity.moveToDestination(delta);            
+        this.units.forEach(unit => {
+            unit.doThings();
+            unit.moveToDestination(delta);            
         })
     }
 }

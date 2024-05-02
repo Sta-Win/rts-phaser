@@ -1,10 +1,16 @@
 import { Location } from "../types/Location";
+import { Order } from "../types/Order";
+import { Queue } from "../types/Queue";
 import { MathUtils } from "../utils/math";
 
 export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
 
     abstract sprite: string;
     abstract speed: number;
+
+    orderFunctionMap: {[fnName: string]: (params?: any) => any} = {
+        'moveTo': this.moveToDestination
+    }
 
     constructor(scene: Phaser.Scene, x: number, y: number, sprite: string) {
         super(scene, x, y, sprite);
@@ -14,6 +20,8 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
      * Location where the unity aims to move
      */
     private _destination?: Location;
+
+    public readonly ordersQueue = new Queue<Order>();
 
     getLocation(): Location {
         return {
@@ -39,6 +47,35 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
         return this._destination;
     }
 
+    abstract work(order: Order): void;
+
+    doThings(): void {
+        const currentOrder = this.ordersQueue.first();
+        if (!currentOrder) {
+            this.state = 'idle';
+        } else {
+            this.state = 'active';
+            switch (currentOrder.status) {
+                case 'done': {
+                    const nextOrder = this.ordersQueue.next();
+                    if (nextOrder) {
+                        this.state = 'in progress'
+                    } else {
+                        this.state = 'idle'
+                    }
+                    this.work(currentOrder);
+                    break;
+                }
+                case "in progress":
+                case "waiting":
+                {
+                    this.work(currentOrder);
+                    break;
+                }
+            }
+        }
+    }
+
     moveToDestination(delta: number) {
         const destination = this.getDestination();
         if (destination) {
@@ -49,9 +86,13 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
                 const moveX = this.x + (destination.x - this.x) * moveFactor;
                 const moveY = this.y + (destination.y - this.y) * moveFactor;
                 this.playAnimation(destination, unityLocation);
-                this.setPosition(moveX, moveY);
+                this.scene.physics.moveTo(this, destination.x, destination.y)
+                if (moveFactor > distance) {
+                    this.setVelocity(0)
+                }
             } else {
-                this.anims.play(`${this.sprite}-idle-bottom`);
+                this.setVelocity(0)
+                this.anims.play(`${this.sprite}-idle-bottom`);                
             }
         }
     }
@@ -77,6 +118,6 @@ export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
     }
 }
 
-export function isUnity(gameObject: Phaser.GameObjects.GameObject): gameObject is Unit {
+export function isUnit(gameObject: Phaser.GameObjects.GameObject): gameObject is Unit {
     return 'sprite' in gameObject;
 }
