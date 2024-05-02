@@ -93,7 +93,12 @@ export class Game extends Scene
                 if (selectionZone) {
                     const selectedUnities = this.children.list.filter((child): child is Unit => {
                         if (isUnity(child)) {
-                            const selectionZoneRect = new Phaser.Geom.Rectangle(selectionZone.x, selectionZone.y, selectionZone.width, selectionZone.height)
+                            const selectionZoneRect = new Phaser.Geom.Rectangle(
+                                Math.min(pointer.worldX, selectionZone.x),
+                                Math.min(pointer.worldY, selectionZone.y),
+                                Math.max(selectionZone.x, pointer.worldX),
+                                Math.max(selectionZone.y, pointer.worldY)
+                            );
                             const childRect = new Phaser.Geom.Rectangle(child.x, child.y, child.frame.width, child.frame.height);
                             const childInSelectionZone = Phaser.Geom.Intersects.RectangleToRectangle(selectionZoneRect, childRect);
                             return childInSelectionZone;
