@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="49">
+ <editorsettings>
+  <export target="map.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="rts-phaset-tileset_0001" tilewidth="32" tileheight="32" tilecount="45" columns="9">
+  <image source="../public/assets/rts-phaset-tileset_0001.png" width="288" height="160"/>
+  <tile id="0">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="3" probability="0.05">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="4" probability="0.05">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="4.93283" y="20.9645">
+     <polygon points="0,0 0.0352345,-6.9412 -1.9379,-6.9412 -1.97313,-8.80863 -2.99494,-8.94957 -2.92447,-16.0317 -1.97313,-16.0317 -1.97313,-17.0535 -0.916098,-17.0535 -0.880863,-18.0753 7.11738,-18.0048 7.11738,-17.0535 7.99824,-17.0183 7.99824,-16.0669 9.12574,-15.9612 9.12574,-12.015 17.0535,-12.015 17.0887,-11.0636 19.1676,-11.0284 19.0971,-10.0771 21.1055,-10.0066 21.1055,-9.05527 22.0921,-9.02004 22.0921,-7.08214 23.0434,-7.08214 23.0786,0 22.0921,-0.0352345 22.1273,1.97313 21.1407,2.00837 21.1055,2.92447 20.1894,2.9597 20.1542,3.91103 18.1458,3.94627 18.1458,4.8976 16.0669,5.0033 16.1022,5.95464 7.04691,5.95464 7.04691,5.03854 5.03854,5.0033 4.96807,4.12244 3.0654,4.12244 3.10064,2.99494 2.11407,3.03017 2.00837,2.0436 0.951332,2.0436 1.09227,-0.0352345"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="12" probability="0.05">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="13" probability="0.05">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="-0.0352345" y="32.0282">
+     <polygon points="0,0 0.0352345,-32.0282 31.993,-32.0634 32.0634,-17.0535 27.0601,-17.0887 27.0249,-15.1156 20.1189,-15.0099 20.0132,-17.0183 15.0451,-16.983 15.0099,-0.0352345"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="0.0352345">
+     <polygon points="0,0 31.993,0.0352345 32.0634,31.9577 17.0535,31.9577 17.0183,14.9042 11.9797,14.9042 11.9797,16.9126 5.03854,16.9126 5.0033,14.9042 0,14.9394"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="15.926" y="31.993">
+     <polygon points="0,0 0.0704691,-13.0368 -1.86743,-13.0015 -1.90266,-16.9478 2.00837,-16.983 2.00837,-15.0804 16.0669,-15.0804 16.1374,-0.0352345"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0.0704691" y="17.0183">
+     <polygon points="0,0 13.9176,-0.105704 13.8472,-2.00837 17.9344,-2.07884 17.9344,1.97313 15.9612,1.90266 15.8908,14.9747 -0.0352345,14.9394"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="3">
+    <object id="2" x="0" y="-0.0352345">
+     <polygon points="0,0 15.1508,-0.0352345 15.0451,17.0887 20.0484,16.983 19.9427,15.0451 27.0249,15.0451 26.9896,17.0535 32.0282,17.0535 32.0282,31.9225 0.0704691,31.993"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0.0352345" y="16.9126">
+     <polygon points="0,0 5.03854,0.0704691 4.96807,-1.97313 11.9445,-1.97313 12.015,0.105704 16.9478,0.0352345 16.983,-16.9478 31.9577,-16.8773 31.993,15.0451 0,14.9394"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="14.0586" y="17.8639">
+     <polygon points="0,0 -0.0352345,-3.94627 1.86743,-3.94627 1.90266,-16.4545 17.9344,-16.4545 17.9344,-1.9379 3.9815,-1.97313 3.91103,0.0704691"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0.0704691" y="16.0669">
+     <polygon points="0,0 13.9529,-0.0704691 13.9176,1.8322 17.9344,1.90266 17.9696,-2.0436 15.8555,-2.14931 15.8555,-14.6576 15.926,-15.9965 -0.0704691,-16.0317"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="9.93614" y="19.0971">
+     <polygon points="0,0 0.0352345,1.8322 2.11407,1.8322 2.07884,3.94627 1.09227,3.91103 1.0218,8.84387 2.00837,8.91434 2.00837,9.93614 8.10394,9.9009 8.10394,8.94957 9.12574,8.94957 9.12574,3.91103 8.10394,3.8758 8.10394,1.90266 10.1828,1.86743 10.0771,-0.140938 11.0636,-0.140938 11.0636,-1.09227 12.015,-1.16274 12.0502,-15.1508 11.0989,-15.1156 11.0989,-16.1374 10.0418,-16.1374 10.0771,-17.1592 9.05527,-17.124 9.05527,-18.2163 1.05704,-18.181 1.05704,-17.0887 0.0704691,-17.0887 0.0704691,-16.1022 -0.986567,-16.0669 -0.951332,-15.1508 -1.90266,-15.0804 -1.9379,-1.23321 -1.05704,-1.16274 -1.0218,-0.176173"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="5.0033" y="9.02004">
+     <polygon points="0,0 0.0352345,-5.14424 0.916098,-5.10901 0.880863,-6.13081 9.97137,-6.09557 10.0066,-5.10901 10.9579,-4.96807 11.0284,-0.105704 9.97137,-0.105704 10.0066,0.986567 10.9227,0.916098 10.9579,1.97313 12.9311,1.97313 12.8958,0.951332 12.1207,0.951332 12.0502,-6.90597 12.9663,-6.97644 12.9311,-8.06871 20.9998,-8.03347 20.9998,-7.04691 21.9863,-7.01167 22.0216,0.986567 20.9645,0.916098 20.9998,1.86743 19.0266,1.9379 18.9562,6.8355 15.0804,6.97644 15.0099,11.9445 15.9965,11.9445 15.9965,17.0535 15.0451,16.983 14.9747,17.8639 9.09051,17.8991 9.05527,17.0183 8.03347,16.9478 8.06871,11.9445 8.98481,11.9093 8.94957,4.8976 7.01167,4.8976 7.01167,3.9815 5.84893,4.01674 5.9194,2.99494 5.03854,2.99494 5.03854,1.0218 1.0218,1.0218 0.916098,0.0352345"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="5.07377" y="23.0434">
+     <polygon points="0,0 -0.105704,-6.06034 0.916098,-6.09557 0.951332,-7.01167 6.9412,-7.04691 6.90597,-6.13081 7.92777,-6.09557 7.92777,0.0704691 6.9412,0.0352345 6.9412,0.951332 0.845629,1.0218 0.916098,0"/>
+    </object>
+    <object id="2" x="15.8908" y="23.0081">
+     <polygon points="0,0 0.105704,-6.09557 2.07884,-6.09557 2.11407,-8.06871 3.10064,-7.963 3.10064,-8.98481 9.12574,-9.02004 9.19621,-8.06871 10.0771,-8.03347 10.0771,-6.0251 12.1207,-5.98987 12.1207,0.0352345 11.0989,0 11.1341,0.951332 1.09227,0.986567 1.0218,0.0704691"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="4.8976" y="22.9729">
+     <polygon points="0,0 0.0704691,-6.06034 1.05704,-6.06034 1.1275,-7.01167 7.15261,-7.01167 7.08214,-5.98987 8.10394,-5.98987 8.10394,0 7.11738,0.0352345 7.11738,0.986567 1.16274,1.0218 1.1275,0.105704"/>
+    </object>
+    <object id="2" x="15.926" y="23.0786">
+     <polygon points="0,0 0.0704691,-6.09557 2.00837,-6.09557 2.0436,-8.03347 3.03017,-8.03347 3.10064,-9.09051 9.12574,-9.05527 9.09051,-8.13918 10.0771,-8.06871 10.0418,-6.0251 12.0502,-6.0251 12.0854,-0.105704 11.0989,-0.140938 11.0989,0.845629 0.986567,0.916098 0.986567,-0.140938"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="15.8203" y="-0.0352345">
+     <polygon points="0,0 0.246642,31.9225 -15.8203,32.0282 -15.8203,0"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="-0.0352345" y="14.9747">
+     <polygon points="0,0 11.0636,0.0352345 11.0636,2.0436 20.9998,2.00837 21.035,0 31.993,0.0704691 31.9577,-15.0804 0.0352345,-15.0099"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="7.01167" y="6.9412" width="15.9965" height="16.0669"/>
+   </objectgroup>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="7.99824" y="6.9412" width="16.0317" height="16.0669"/>
+   </objectgroup>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="6.06034" y="6.7298" width="20.9645" height="17.4059"/>
+   </objectgroup>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="3">
+    <object id="2" x="5.95464" y="6.9412" width="20.9645" height="17.1592"/>
+   </objectgroup>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="collide" type="bool" value="false"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="15.9965" y="-0.0704691">
+     <polygon points="0,0 0.0352345,32.0282 16.0317,32.0634 15.9965,0.105704"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0.0352345" y="15.926">
+     <polygon points="0,0 9.05527,0.105704 8.98481,2.0436 23.0434,2.14931 23.0081,0 31.993,0.140938 31.9577,-15.926 0,-15.926"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="13.0015" y="-0.0352345" width="19.0619" height="25.0518"/>
+   </objectgroup>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="collide" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="0.0352345" width="18.9562" height="24.946"/>
+   </objectgroup>
+  </tile>
+  <wangsets>
+   <wangset name="grounds" type="mixed" tile="-1">
+    <wangcolor name="Grass" color="#8b9150" tile="-1" probability="1"/>
+    <wangcolor name="Path" color="#eeb551" tile="-1" probability="1"/>
+    <wangcolor name="Water" color="#5c699f" tile="-1" probability="1"/>
+    <wangtile tileid="0" wangid="2,2,1,1,1,2,2,2"/>
+    <wangtile tileid="1" wangid="2,2,1,1,1,1,1,2"/>
+    <wangtile tileid="2" wangid="2,2,2,2,1,1,1,2"/>
+    <wangtile tileid="5" wangid="2,2,2,2,2,2,2,2"/>
+    <wangtile tileid="6" wangid="3,3,3,3,3,3,3,3"/>
+    <wangtile tileid="9" wangid="1,1,1,1,1,2,2,2"/>
+    <wangtile tileid="10" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="11" wangid="1,2,2,2,1,1,1,1"/>
+    <wangtile tileid="14" wangid="3,3,3,1,3,3,3,3"/>
+    <wangtile tileid="15" wangid="3,3,3,3,3,1,3,3"/>
+    <wangtile tileid="16" wangid="1,1,3,3,3,1,1,1"/>
+    <wangtile tileid="17" wangid="1,1,1,1,3,3,3,1"/>
+    <wangtile tileid="18" wangid="1,1,1,2,2,2,2,2"/>
+    <wangtile tileid="19" wangid="1,1,1,2,2,2,1,1"/>
+    <wangtile tileid="20" wangid="1,2,2,2,2,2,1,1"/>
+    <wangtile tileid="21" wangid="1,1,1,1,1,2,1,1"/>
+    <wangtile tileid="22" wangid="1,1,1,2,1,0,1,1"/>
+    <wangtile tileid="23" wangid="3,1,3,3,3,3,3,3"/>
+    <wangtile tileid="24" wangid="3,3,3,3,3,3,3,1"/>
+    <wangtile tileid="25" wangid="3,3,3,1,1,1,1,1"/>
+    <wangtile tileid="26" wangid="3,1,1,1,1,1,3,3"/>
+    <wangtile tileid="31" wangid="1,1,1,1,1,1,1,2"/>
+    <wangtile tileid="32" wangid="3,1,1,1,3,3,3,3"/>
+    <wangtile tileid="33" wangid="3,3,3,1,1,1,3,3"/>
+    <wangtile tileid="40" wangid="1,2,1,1,1,1,1,1"/>
+    <wangtile tileid="41" wangid="3,3,3,3,3,1,1,1"/>
+    <wangtile tileid="42" wangid="1,1,3,3,3,3,3,1"/>
+   </wangset>
+  </wangsets>
+ </tileset>
+ <layer id="1" name="background" width="32" height="24">
+  <data encoding="csv">
+11,11,11,11,11,11,11,11,11,4,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,42,7,7,7,7,7,7,
+43,43,43,43,43,18,11,11,11,11,11,11,11,11,11,11,11,4,11,11,11,11,4,11,11,42,7,7,7,7,7,7,
+34,34,34,34,16,24,43,43,18,11,11,11,11,11,11,11,11,11,11,11,11,4,11,11,17,25,7,7,7,7,7,7,
+11,11,11,11,26,34,34,16,33,11,11,11,11,11,11,11,11,11,11,11,17,43,43,43,25,7,7,7,7,7,7,7,
+11,11,11,13,11,11,11,42,24,43,43,18,11,11,11,11,11,11,17,43,25,7,7,7,7,7,7,7,7,7,7,7,
+11,11,4,4,11,11,11,26,34,34,16,24,43,43,18,4,17,43,25,15,34,34,34,34,34,16,7,7,7,7,7,7,
+11,11,11,11,11,11,11,11,11,11,26,34,34,16,24,43,25,15,34,27,11,11,11,11,11,42,7,7,7,7,7,7,
+11,11,11,13,11,11,11,11,11,11,11,11,11,26,34,34,34,27,11,11,11,11,11,11,11,42,7,7,7,7,7,7,
+11,11,13,11,11,11,11,11,11,13,11,11,11,11,11,11,11,11,13,11,11,11,11,11,11,42,7,7,7,7,7,7,
+11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,42,7,7,7,7,7,7,
+11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,4,13,11,11,11,11,17,43,25,7,7,7,7,7,7,
+11,11,11,11,11,4,11,11,11,11,11,11,11,11,11,11,4,4,11,11,11,11,11,42,7,7,7,7,7,7,7,7,
+11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,42,7,7,7,7,7,7,7,7,
+20,22,11,11,11,11,11,11,11,11,13,11,11,11,11,11,11,11,11,11,11,11,11,42,7,7,7,7,7,7,7,7,
+6,19,20,20,20,20,20,22,11,11,11,11,11,4,11,11,11,4,11,11,11,11,11,42,7,7,7,7,7,7,7,7,
+6,6,6,6,14,6,6,19,22,11,11,11,4,11,11,11,11,11,11,11,11,11,11,42,7,7,7,7,7,15,34,34,
+6,6,6,6,6,6,6,6,19,22,11,11,11,11,11,11,11,11,11,11,11,11,11,42,7,7,7,7,7,33,35,36,
+6,6,6,6,6,6,6,6,6,10,11,11,11,4,11,11,4,11,11,11,13,11,11,26,34,16,7,7,7,33,44,45,
+6,6,6,14,6,6,6,6,6,19,22,11,4,11,11,13,11,11,11,11,11,11,11,11,11,42,7,7,7,24,43,43,
+6,6,6,6,6,6,6,6,6,6,19,22,11,11,11,11,13,11,11,11,11,11,13,11,11,42,7,7,7,7,7,7,
+6,5,6,6,6,6,6,5,6,6,6,10,11,11,11,11,11,11,11,11,11,11,11,11,11,42,7,7,7,7,7,7,
+6,6,6,6,6,6,5,14,6,6,6,19,22,11,11,11,4,11,11,11,11,11,11,11,11,42,7,7,7,7,7,7,
+6,14,6,6,6,6,6,6,6,6,5,6,19,22,11,11,11,11,13,11,4,11,11,4,11,42,7,7,7,7,7,7,
+14,6,6,6,6,6,6,14,6,6,6,6,6,19,20,22,11,11,11,11,11,13,11,11,11,42,7,7,7,7,7,7
+</data>
+ </layer>
+ <objectgroup id="2" name="objects">
+  <object id="3" gid="28" x="288" y="128" width="32" height="32"/>
+  <object id="4" gid="28" x="288" y="96" width="32" height="32"/>
+  <object id="5" gid="28" x="320" y="96" width="32" height="32"/>
+  <object id="6" gid="28" x="320" y="128" width="32" height="32"/>
+  <object id="7" gid="28" x="480" y="192" width="32" height="32"/>
+  <object id="8" gid="28" x="480" y="160" width="32" height="32"/>
+  <object id="9" gid="28" x="448" y="160" width="32" height="32"/>
+  <object id="10" gid="28" x="512" y="160" width="32" height="32"/>
+  <object id="11" gid="29" x="416" y="160" width="32" height="32"/>
+  <object id="12" gid="29" x="384" y="160" width="32" height="32"/>
+  <object id="13" gid="29" x="384" y="128" width="32" height="32"/>
+  <object id="14" gid="37" x="768" y="32" width="32" height="32"/>
+  <object id="15" gid="37" x="768" y="64" width="32" height="32"/>
+  <object id="16" gid="37" x="736" y="96" width="32" height="32"/>
+  <object id="17" gid="37" x="736" y="64" width="32" height="32"/>
+  <object id="18" gid="30" x="736" y="32" width="32" height="32"/>
+  <object id="19" gid="30" x="704" y="32" width="32" height="32"/>
+  <object id="20" gid="30" x="672" y="32" width="32" height="32"/>
+  <object id="21" gid="39" x="512" y="32" width="32" height="32"/>
+  <object id="22" gid="39" x="544" y="32" width="32" height="32"/>
+  <object id="23" gid="39" x="480" y="32" width="32" height="32"/>
+  <object id="24" gid="39" x="480" y="64" width="32" height="32"/>
+  <object id="25" gid="37" x="0" y="32" width="32" height="32"/>
+  <object id="26" gid="37" x="32" y="32" width="32" height="32"/>
+  <object id="27" gid="37" x="128" y="32" width="32" height="32"/>
+  <object id="28" gid="37" x="128" y="32" width="32" height="32"/>
+  <object id="29" gid="37" x="96" y="32" width="32" height="32"/>
+  <object id="30" gid="37" x="64" y="32" width="32" height="32"/>
+  <object id="31" gid="37" x="160" y="32" width="32" height="32"/>
+  <object id="32" gid="37" x="192" y="32" width="32" height="32"/>
+  <object id="33" gid="37" x="320" y="320" width="32" height="32"/>
+  <object id="34" gid="37" x="320" y="352" width="32" height="32"/>
+  <object id="35" gid="37" x="352" y="320" width="32" height="32"/>
+  <object id="36" gid="37" x="352" y="352" width="32" height="32"/>
+  <object id="37" gid="30" x="512" y="448" width="32" height="32"/>
+  <object id="38" gid="30" x="512" y="480" width="32" height="32"/>
+  <object id="39" gid="30" x="544" y="480" width="32" height="32"/>
+  <object id="40" gid="30" x="544" y="448" width="32" height="32"/>
+  <object id="41" gid="40" x="672" y="384" width="32" height="32"/>
+  <object id="42" gid="40" x="672" y="352" width="32" height="32"/>
+  <object id="43" gid="40" x="640" y="352" width="32" height="32"/>
+  <object id="44" gid="40" x="640" y="384" width="32" height="32"/>
+  <object id="45" gid="28" x="384" y="448" width="32" height="32"/>
+  <object id="46" gid="28" x="352" y="448" width="32" height="32"/>
+  <object id="47" gid="28" x="352" y="480" width="32" height="32"/>
+  <object id="48" gid="28" x="384" y="480" width="32" height="32"/>
+ </objectgroup>
+ <layer id="3" name="foreground" width="32" height="24">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

@@ -2,20 +2,13 @@ import { createVillagerAnims } from '../anims/VillagerAnims';
 import { isUnit, Unit } from '../objects/Unit';
 import '../objects/Villager';
 import { Scene } from 'phaser';
-import { Location } from '../types/Location';
 import { Task as Task } from '../types/Order';
 
 export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
-    map: number[][] = [];
-    Map: Phaser.Tilemaps.Tilemap;
+    map: Phaser.Tilemaps.Tilemap;
     tileset: Phaser.Tilemaps.Tileset | null;
-    textureMap : {[texture: number] : number} = {
-        0: 0x9cdb43,
-        1: 0xa08662
-    };
-    cellSize = 32;
 
     private readonly units: Unit[] = []
 
@@ -40,10 +33,6 @@ export class Game extends Scene
             this.add.villager(100,100),
             this.add.villager(200,200)
         );
-
-        // Test de orderQueue
-        // this.units[0].taskQueue.add({type: 'build', status: 'waiting', 'args': 'une maison'})
-        // this.units[0].doThings()
         
         this.handleEvents();
         
@@ -79,7 +68,6 @@ export class Game extends Scene
                             unit.taskQueue.add(task);
                         }
                     });
-                    //this.moveUnits(destination);
                 }
             }
             if (pointer.leftButtonDown()) {
@@ -135,47 +123,17 @@ export class Game extends Scene
     }
 
     private generateMap() {
-        const nbOfCellPerLine = parseInt(this.game.config.width + '') / this.cellSize;
-        const nbOfCellPerColumn = parseInt(this.game.config.height + '') / this.cellSize;
-        for (let row = 0; row < nbOfCellPerColumn; row++) {
-            const line = [];
-            for (let col = 0; col < nbOfCellPerLine; col++) {
-                let tile = Math.floor(Math.random() * (8 - 0)) + 0;
-                if (Math.random() < .1) {
-                    tile = 50
-                }
-                line.push(tile);
-            }
-            this.map.push(line);
-        }
-
-
-        this.Map = this.make.tilemap({
-            data: this.map,
-            tileWidth: 32,
-            tileHeight: 32,
-            width: parseInt(this.game.config.width+''),
-            height: parseInt(this.game.config.height+''),
-        });
-        this.tileset = this.Map.addTilesetImage('tilesGrass');
+        this.map = this.make.tilemap({key: 'map'});
+        this.tileset = this.map.addTilesetImage('rts-phaset-tileset_0001', 'tiles');
         if (this.tileset ) {
-            this.Map.createLayer(0, this.tileset);
+            this.map.createLayer('background', this.tileset);
+            this.map.createFromObjects('objects', this.tileset);
         }
-        
-
-    }
-
-    private moveUnits(destination: Location) {
-        this._selectedUnits.forEach(selectedUnit => {
-            //this.physics.moveTo(selectedUnit, destination.x, destination.y, selectedUnit.speed)
-            selectedUnit.setDestination(destination);
-        });
     }
 
     update(_time: any, delta: number): void {
         this.units.forEach(unit => {
-            unit.doThings(delta);
-            //unit.moveToDestination(delta);            
+            unit.doThings(delta);            
         })
     }
 }

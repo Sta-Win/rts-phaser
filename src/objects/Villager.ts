@@ -38,7 +38,7 @@ export default class Villager extends Unit {
     }
 
     build(what: string): void {
-        //console.log('je construit', what)
+        throw Error('method is not implemented');
     }
 
 }
@@ -48,10 +48,6 @@ Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser
 
     villager.setInteractive();
     this.scene.physics.add.existing(villager);
-    villager.addCollidesWith(1)
-    this.scene.physics.collide(villager, undefined, (villager, collidedWith) => {
-        console.log(villager, 'collided with', collidedWith)
-    });
 
     this.displayList.add(villager);
     this.updateList.add(villager);

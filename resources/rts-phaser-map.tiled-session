@@ -1,0 +1,14 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "last.exportedFilePath": "C:/Users/Maxime/git/rts-phaser/resources",
+    "last.imagePath": "C:/Users/Maxime/git/rts-phaser/public/assets",
+    "map.height": 24,
+    "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 32,
+    "property.type": "bool",
+    "tileset.embedInMap": true
+}
