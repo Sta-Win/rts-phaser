@@ -1,6 +1,4 @@
-import { Task } from "../types/Order";
-import { Unit } from "./Unit";
-
+import { MovableUnit } from "./MovableUnit";
 
 declare global
 {
@@ -13,28 +11,20 @@ declare global
     }
 }
 
-export default class Villager extends Unit {
+export default class Villager extends MovableUnit {
 
     sprite: string = 'villager';
     speed: number = 100;
 
-    readonly villagerOrderFunctionMap = {
-        'build': this.build
-    }
-
     constructor(scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y, 'villager');
-        this.taskFunctionMap = {
-            ...this.taskFunctionMap,
-            ...this.villagerOrderFunctionMap
-        }
+        this.taskRegistry.register([
+            {
+                key: 'build',
+                value: this.build
+            }
+        ]);
         this.anims.play('villager-idle-bottom')
-    }
-
-    work(task: Task): void {
-        const fn: Function = this.taskFunctionMap[task.type];
-        const args = task.args ? Object.values(task.args) : [];
-        fn.bind(this, ...args)();        
     }
 
     build(what: string): void {
@@ -48,7 +38,6 @@ Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser
 
     villager.setInteractive();
     this.scene.physics.add.existing(villager);
-
     this.displayList.add(villager);
     this.updateList.add(villager);
 

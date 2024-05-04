@@ -2,7 +2,7 @@ import { createVillagerAnims } from '../anims/VillagerAnims';
 import { isUnit, Unit } from '../objects/Unit';
 import '../objects/Villager';
 import { Scene } from 'phaser';
-import { Task as Task } from '../types/Order';
+import { Task as Task } from '../types/Task';
 
 export class Game extends Scene
 {
@@ -84,16 +84,16 @@ export class Game extends Scene
                 }                
             }
         })
-        this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
+        this.input.on('pointermove', (pointer: Phaser.Input.Pointer): void => {
             if (pointer.isDown && pointer.leftButtonDown()) {
                 selectionZone.width = pointer.worldX - selectionZone?.x;
                 selectionZone.height = pointer.worldY - selectionZone?.y;
             }
         })
-        this.input.on('pointerup', (pointer: Phaser.Input.Pointer) => {
+        this.input.on('pointerup', (pointer: Phaser.Input.Pointer): void => {
             if (pointer.leftButtonReleased()) {
                 if (selectionZone) {
-                    const selectedUnities = this.children.list.filter((child): child is Unit => {
+                    const selectedUnities: Unit[] = this.children.list.filter((child): child is Unit => {
                         if (isUnit(child)) {
                             const selectionZoneRect = new Phaser.Geom.Rectangle(
                                 Math.min(pointer.worldX, selectionZone.x),
@@ -108,21 +108,21 @@ export class Game extends Scene
                         return false;
                     });
                     this.setSelectedUnits(selectedUnities);
-                    selectionZone.destroy()
+                    selectionZone.destroy();
                 }
             }
         })
-        this.input.on('pointerupoutside', () => {
-            selectionZone.destroy()
+        this.input.on('pointerupoutside', (): void => {
+            selectionZone.destroy();
         })
     }
 
-    private setCamera() {
+    private setCamera(): void {
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x000);
     }
 
-    private generateMap() {
+    private generateMap(): void {
         this.map = this.make.tilemap({key: 'map'});
         this.tileset = this.map.addTilesetImage('rts-phaset-tileset_0001', 'tiles');
         if (this.tileset ) {

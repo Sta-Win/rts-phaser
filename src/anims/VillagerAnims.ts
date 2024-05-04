@@ -1,4 +1,4 @@
-export const createVillagerAnims = (anims: Phaser.Animations.AnimationManager) => {
+export const createVillagerAnims = (anims: Phaser.Animations.AnimationManager): void => {
     anims.create({
         key: 'villager-idle-right',
         frames: [{
