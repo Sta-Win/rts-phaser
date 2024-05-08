@@ -37,9 +37,12 @@ Phaser.GameObjects.GameObjectFactory.register('villager', function (this: Phaser
     const villager = new Villager(this.scene, x, y);
 
     villager.setInteractive();
+    villager.addCollidesWith(2);
     this.scene.physics.add.existing(villager);
     this.displayList.add(villager);
     this.updateList.add(villager);
-
+    villager.setCollisionCategory(1)
+    villager.setCollideWorldBounds()
+    
     return villager;
 })

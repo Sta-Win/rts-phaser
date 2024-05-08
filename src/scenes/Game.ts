@@ -11,7 +11,9 @@ export class Game extends Scene
 
     private readonly units: Unit[] = []
     private _selectedUnits: Unit[] = [];
-    objects: Phaser.GameObjects.Sprite[];
+    objects: Phaser.Physics.Arcade.StaticGroup;
+
+    shiftDown = false;
 
     setSelectedUnits(selectedUnits: Unit[]): void {
         this._selectedUnits = selectedUnits;
@@ -53,6 +55,13 @@ export class Game extends Scene
     }
 
     private onClick() {
+        this.input.keyboard?.on('keydown-SHIFT', () => {
+            this.shiftDown = true;
+            
+        })
+        this.input.keyboard?.on('keyup-SHIFT', () => {
+            this.shiftDown = false;
+        })
         let selectionZone: Phaser.GameObjects.Rectangle;
         this.input.on('pointerdown', (pointer: Phaser.Input.Pointer, objects: Phaser.GameObjects.GameObject[]) => {
             if (pointer.rightButtonDown()) {                
@@ -60,7 +69,7 @@ export class Game extends Scene
                     const destination = { x: pointer.worldX, y: pointer.worldY };
                     const task: Task = {type: 'moveTo', status: 'waiting', args: destination};
                     this._selectedUnits.forEach(unit => {
-                        if (false) { // MAJ+Click
+                        if (this.shiftDown) { // MAJ+Click
                             unit.taskQueue.add(task);
                         } else {
                             unit.taskQueue.empty();
@@ -140,11 +149,15 @@ export class Game extends Scene
         if (this.tileset ) {
             this.map.createLayer('background', this.tileset);
             const objectLayer = this.map.getObjectLayer('objects');
-            this.objects = objectLayer?.objects.map(object => {
+            const staticObjects = objectLayer?.objects.map(object => {
                 const sprite = this.add.sprite(Number(object.x), Number(object.y), 'tiles', object.gid!-1).setOrigin(0, 0.5);
-                this.physics.add.existing(sprite, true);
                 return sprite;
             }) ?? [];
+            this.objects = this.physics.add.staticGroup(staticObjects).setCollisionCategory(2);
+            this.physics.add.collider(this.units, this.objects, () => console.log('col'))
+            console.log(this.physics.world.colliders);
+            this.objects.addCollidesWith(1)
+            
         }
     }
 
