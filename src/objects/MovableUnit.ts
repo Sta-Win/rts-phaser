@@ -1,6 +1,7 @@
 import { MathUtils } from "../utils/math";
 import { Unit } from "./Unit";
 import { Location } from "../types/Location";
+import PhaserNavMeshPlugin, { PhaserNavMesh } from "phaser-navmesh/src";
 
 export abstract class MovableUnit extends Unit {
 
@@ -45,7 +46,7 @@ export abstract class MovableUnit extends Unit {
                     this.taskDone();
                     return;
                 }
-                this.scene.physics.moveTo(this, destination.x, destination.y)
+                this.scene.physics.moveTo(this, destination.x, destination.y);
             }
         }
     }

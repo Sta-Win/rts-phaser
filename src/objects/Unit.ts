@@ -3,6 +3,13 @@ import { Location } from "../types/Location";
 import { Task, TaskResolver } from "../types/Task";
 import { Queue } from "../types/Queue";
 
+export type SpriteConstructorParams = {
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    sprite?: string
+}
+
 export abstract class Unit extends Phaser.Physics.Arcade.Sprite {
 
     sprite: string;

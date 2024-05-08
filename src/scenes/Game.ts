@@ -3,7 +3,6 @@ import { isUnit, Unit } from '../objects/Unit';
 import '../objects/Villager';
 import { Scene } from 'phaser';
 import { Task as Task } from '../types/Task';
-
 export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
@@ -11,8 +10,8 @@ export class Game extends Scene
     tileset: Phaser.Tilemaps.Tileset | null;
 
     private readonly units: Unit[] = []
-
     private _selectedUnits: Unit[] = [];
+    objects: Phaser.GameObjects.Sprite[];
 
     setSelectedUnits(selectedUnits: Unit[]): void {
         this._selectedUnits = selectedUnits;
@@ -47,7 +46,7 @@ export class Game extends Scene
         this.input.on('wheel', (pointerEvent: Phaser.Input.Pointer) => {
             const zoomLevel = pointerEvent.deltaY / 500;
             const nextZoomLevel = this.camera.zoom + zoomLevel;
-            if (nextZoomLevel > 0.5 && nextZoomLevel < 2.5) {
+            if (nextZoomLevel >= 1 && nextZoomLevel < 2.5) {
                 this.camera.setZoom(this.camera.zoom + zoomLevel);
             }
         });
@@ -89,7 +88,19 @@ export class Game extends Scene
                 selectionZone.width = pointer.worldX - selectionZone?.x;
                 selectionZone.height = pointer.worldY - selectionZone?.y;
             }
-        })
+            if (pointer.x > 0 && pointer.x < (Number(this.game.config.width) * 0.1)) {
+                this.camera.scrollX -= 10;
+            }
+            if (pointer.x > Number(this.game.config.width) * 0.9 && pointer.x < Number(this.game.config.width)) {
+                this.camera.scrollX += 10;
+            }
+            if (pointer.y > 0 && pointer.y < Number(this.game.config.height) * 0.1) {
+                this.camera.scrollY -= 10;
+            }
+            if (pointer.y > Number(this.game.config.height) * 0.9 && pointer.y < Number(this.game.config.height)) {
+                this.camera.scrollY += 10;
+            }
+        });
         this.input.on('pointerup', (pointer: Phaser.Input.Pointer): void => {
             if (pointer.leftButtonReleased()) {
                 if (selectionZone) {
@@ -120,6 +131,7 @@ export class Game extends Scene
     private setCamera(): void {
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x000);
+        this.camera.setBounds(0,0, Number(this.game.config.width), Number(this.game.config.height));
     }
 
     private generateMap(): void {
@@ -127,7 +139,12 @@ export class Game extends Scene
         this.tileset = this.map.addTilesetImage('rts-phaset-tileset_0001', 'tiles');
         if (this.tileset ) {
             this.map.createLayer('background', this.tileset);
-            this.map.createFromObjects('objects', this.tileset);
+            const objectLayer = this.map.getObjectLayer('objects');
+            this.objects = objectLayer?.objects.map(object => {
+                const sprite = this.add.sprite(Number(object.x), Number(object.y), 'tiles', object.gid!-1).setOrigin(0, 0.5);
+                this.physics.add.existing(sprite, true);
+                return sprite;
+            }) ?? [];
         }
     }
 

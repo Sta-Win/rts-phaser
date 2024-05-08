@@ -3,12 +3,52 @@
         "height": 4300,
         "width": 2
     },
-    "last.exportedFilePath": "C:/Users/Maxime/git/rts-phaser/resources",
+    "activeFile": "tileset.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInEditor": 5.5
+        },
+        "map.json": {
+            "scale": 0.73291015625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 513.0233177881413,
+                "y": 384.7674883411059
+            }
+        },
+        "map.json#rts-phaset-tileset_0001": {
+            "scaleInDock": 1
+        },
+        "tileset.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 750,
+                "y": 78
+            }
+        },
+        "tileset.tmx#rts-phaset-tileset_0001": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/Maxime/git/rts-phaser/public/assets",
     "last.imagePath": "C:/Users/Maxime/git/rts-phaser/public/assets",
+    "lastUsedTilesetExportFilter": "Tous les Fichiers (*)",
     "map.height": 24,
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "map.width": 32,
-    "property.type": "bool",
+    "openFiles": [
+        "tileset.tmx"
+    ],
+    "project": "rts-phaser-map.tiled-project",
+    "property.type": "string",
+    "recentFiles": [
+        "tileset.tmx"
+    ],
     "tileset.embedInMap": true
 }

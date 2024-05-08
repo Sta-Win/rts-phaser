@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="49">
  <editorsettings>
-  <export target="map.json" format="json"/>
+  <export target="../public/assets/map.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="rts-phaset-tileset_0001" tilewidth="32" tileheight="32" tilecount="45" columns="9">
   <image source="../public/assets/rts-phaset-tileset_0001.png" width="288" height="160"/>
@@ -185,9 +185,10 @@
     </object>
    </objectgroup>
   </tile>
-  <tile id="27">
+  <tile id="27" type="wood">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="wood"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="9.93614" y="19.0971">
@@ -195,9 +196,10 @@
     </object>
    </objectgroup>
   </tile>
-  <tile id="28">
+  <tile id="28" type="wood">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="wood"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="5.0033" y="9.02004">
@@ -205,9 +207,10 @@
     </object>
    </objectgroup>
   </tile>
-  <tile id="29">
+  <tile id="29" type="iron">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="iron"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="5.07377" y="23.0434">
@@ -218,9 +221,10 @@
     </object>
    </objectgroup>
   </tile>
-  <tile id="30">
+  <tile id="30" type="iron">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="iron"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="4.8976" y="22.9729">
@@ -266,33 +270,37 @@
     <property name="collide" type="bool" value="false"/>
    </properties>
   </tile>
-  <tile id="36">
+  <tile id="36" type="rock">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="rock"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="7.01167" y="6.9412" width="15.9965" height="16.0669"/>
    </objectgroup>
   </tile>
-  <tile id="37">
+  <tile id="37" type="rock">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="rock"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="7.99824" y="6.9412" width="16.0317" height="16.0669"/>
    </objectgroup>
   </tile>
-  <tile id="38">
+  <tile id="38" type="food">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="food"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="6.06034" y="6.7298" width="20.9645" height="17.4059"/>
    </objectgroup>
   </tile>
-  <tile id="39">
+  <tile id="39" type="food">
    <properties>
     <property name="collide" type="bool" value="true"/>
+    <property name="name" value="food"/>
    </properties>
    <objectgroup draworder="index" id="3">
     <object id="2" x="5.95464" y="6.9412" width="20.9645" height="17.1592"/>
