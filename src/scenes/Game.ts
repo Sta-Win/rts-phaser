@@ -48,7 +48,7 @@ export class Game extends Scene
         this.input.on('wheel', (pointerEvent: Phaser.Input.Pointer) => {
             const zoomLevel = pointerEvent.deltaY / 500;
             const nextZoomLevel = this.camera.zoom + zoomLevel;
-            if (nextZoomLevel >= 1 && nextZoomLevel < 2.5) {
+            if (nextZoomLevel >= 0.99999 && nextZoomLevel < 2.5) {
                 this.camera.setZoom(this.camera.zoom + zoomLevel);
             }
         });
